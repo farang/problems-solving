@@ -30,3 +30,30 @@ public class Solution
         return finalResult;
     }
 }
+
+// efficient solution
+public class Solution2
+{
+    public List<List<string>> GroupAnagrams(string[] strs)
+    {
+        var finalResult = new Dictionary<string, List<string>>();
+
+        foreach (var str in strs)
+        {
+            int[] strCount = new int[26];
+            foreach (char chr in str)
+            {
+                strCount[chr - 'a'] += 1;
+            }
+            var key = string.Join(',', strCount);
+            if (finalResult.ContainsKey(key))
+            {
+                finalResult[key].Add(str);
+                continue;
+            }
+            finalResult[key] = new List<string> { str };
+        }
+
+        return finalResult.Values.ToList<List<string>>();
+    }
+}
