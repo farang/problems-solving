@@ -1,4 +1,3 @@
-// unfinished solution for valid sudoku
 public class Solution
 {
     public bool IsValidSudoku(char[][] board)
@@ -37,7 +36,7 @@ public class Solution
                     var rowIndex1 = (int)Math.Floor((double)(i / 3));
                     var columnIndex1 = (int)Math.Floor((double)(i1 / 3));
                     var matrixIndex1 = (rowIndex1 * 3) + columnIndex1;
-                    if (matrixMap[matrixIndex1][rn] && i != i1)
+                    if (matrixMap[matrixIndex1][rn])
                     {
                         return false;
                     }
@@ -58,13 +57,6 @@ public class Solution
                 {
                     colMap[cn] = true;
                 }
-                var rowIndex2 = (int)Math.Floor((double)(i1 / 3));
-                var columnIndex2 = (int)Math.Floor((double)(i / 3));
-                var matrixIndex2 = (rowIndex2 * 3) + columnIndex2;
-                // if (matrixMap[matrixIndex2][cn] && i != i1) {
-                //     return false;
-                // }
-                matrixMap[matrixIndex2][cn] = true;
             }
         }
 
