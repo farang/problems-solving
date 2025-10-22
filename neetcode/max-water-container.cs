@@ -27,3 +27,23 @@ public class Solution
         return result;
     }
 }
+
+// good solution
+public class Solution {
+    public int MaxArea(int[] heights) {
+        int result = 0;
+        int l = 0, r = heights.Length - 1;
+
+        while (l < r) {
+            int currentArea = Math.Min(heights[l], heights[r]) * (r - l);
+            result = Math.Max(result, currentArea);
+            if (heights[l] <= heights[r]) {
+                l++;
+            } else {
+                r--;
+            }
+        }
+
+        return result;
+    }
+}
