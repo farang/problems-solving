@@ -1,32 +1,32 @@
-// unfinished
-public class Solution
-{
-    public static Dictionary<char, char> BracketsMap = new Dictionary<char, char>
-    {
+// own solution
+public class Solution {
+    public static Dictionary<char, char>  BracketsMap = new Dictionary<char, char> {
         ['['] = ']',
         ['('] = ')',
         ['{'] = '}'
     };
 
-    public bool IsValid(string s)
-    {
-        var end = Math.Floor((decimal)(s.Length / 2));
-        var start = 0;
+    public bool IsValid(string s) {
+        var toClose = -1;
+        var openBrackets = "";
 
-        if (s.Length < 2)
-        {
+        if (s.Length < 2) {
             return false;
         }
 
-        while (start < end)
-        {
-            if (BracketsMap[s[start]] != s[(s.Length - 1) - start])
-            {
-                return false;
+        for (var i = 0; i < s.Length; i++) {
+            if (BracketsMap.ContainsKey(s[i])) {
+                openBrackets += s[i];
+                toClose++;
+                continue;
             }
-            start++;
+            if (toClose < 0 || s[i] != BracketsMap[openBrackets[toClose]]) {
+              return false;   
+            }
+            toClose -= 1;
+            openBrackets = toClose == -1 ? "" : openBrackets;
         }
 
-        return true;
+        return toClose == -1;
     }
 }
