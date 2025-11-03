@@ -51,3 +51,34 @@ public class Solution
         return result;
     }
 }
+
+// Sliding window solution
+public class Solution {
+    public int CharacterReplacement(string s, int k) {
+        int res = 0;
+        var counts = new Dictionary<char, int>();
+
+        int l = 0, maxL = 0;
+
+        for (int r = 0; r < s.Length; r++) {
+            if (counts.ContainsKey(s[r])) {
+                counts[s[r]]++;
+            } else {
+                counts[s[r]] = 1;
+            }
+
+            maxL = Math.Max(maxL, counts[s[r]]);
+
+            int distance = (r - l + 1) - maxL;
+            while (distance > k) {
+                counts[s[l]]--;
+                l++;
+                distance = (r - l + 1) - maxL;
+            }
+
+            res = Math.Max(res, r - l + 1);
+        }
+
+        return res;
+    }
+}
