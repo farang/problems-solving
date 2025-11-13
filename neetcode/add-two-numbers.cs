@@ -8,7 +8,7 @@ public class Solution
         var s = dummyNode;
         while (l1 != null || l2 != null)
         {
-            var sum = ((l1?.val ?? 0) + (l2?.val ?? 0)) + d;
+            var sum = (l1?.val ?? 0) + (l2?.val ?? 0) + d;
             d = sum / 10;
             var left = sum - (d * 10);
             s.next = new ListNode(left);
