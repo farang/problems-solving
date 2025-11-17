@@ -1,4 +1,4 @@
-// iterative BFS solution (with error)
+// iterative BFS solution
 public class Solution
 {
     public bool IsSameTree(TreeNode p, TreeNode q)
@@ -6,11 +6,11 @@ public class Solution
         var queueP = new Queue<TreeNode>(new[] { p });
         var queueQ = new Queue<TreeNode>(new[] { q });
 
-        while (Math.Max(queueP.Count, queueQ.Count) > 0)
+        while (queueP.Count > 0)
         {
             var size = queueP.Count;
 
-            while (size > 0)
+            while (size-- > 0)
             {
                 var nodeP = queueP.Dequeue();
                 var nodeQ = queueQ.Dequeue();
@@ -30,8 +30,6 @@ public class Solution
 
                 queueQ.Enqueue(nodeQ.left);
                 queueQ.Enqueue(nodeQ.right);
-
-                size--;
             }
         }
 
