@@ -44,3 +44,28 @@ public class Solution
         return Math.Abs(balance) <= 1;
     }
 }
+
+// DFS approach
+public class Solution
+{
+    public bool IsBalanced(TreeNode root)
+    {
+        return Dfs(root)[0] == 1;
+    }
+
+    private static int[] Dfs(TreeNode node)
+    {
+        if (node is null)
+        {
+            return new int[] { 1, 0 };
+        }
+
+        var left = Dfs(node.left);
+        var right = Dfs(node.right);
+
+        var isBalanced = ((left[0] == 1 && right[0] == 1) && Math.Abs(left[1] - right[1]) <= 1) ? 1 : 0;
+        var height = 1 + Math.Max(left[1], right[1]);
+
+        return new int[] { isBalanced, height };
+    }
+}
